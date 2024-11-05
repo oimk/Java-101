@@ -1,20 +1,31 @@
 public class PracticeProblems {
-	static int countOccurrences(int[] arr, int n){
-        int occurence = 0;
+    static int countOccurrences(int[] arr, int n){
+        int occurrence = 0;
         for (int i = 0; i < arr.length; i++){
             if (n == arr[i]){
-                occurence ++;
+                occurrence ++;
             }
         }
-    return occurence;
+    return occurrence;
     }
-    static int[] Reversearr(int[] arr){
-        int nt = arr.length;
-        int[] newarr = new int[nt];
-        for (int t = 0; t < arr.length; t++){
-            nt --; 
-            newarr[t] = arr[nt];
+    static void Reversearr(int[] arr){
+        int lengtharr = arr.length;
+        int[] newarray = new int[lengtharr];
+        for (int i = 0; i < arr.length;i++){
+            newarray[i] = arr[lengtharr - 1];
+            lengtharr --;
+            System.out.print(newarray[i] + ",");
         }
-    return newarr;
+    }
+    static int sumGrid(int[][] arr){
+        int sum = 0;
+        for (int a = 0; a < arr.length; a++){
+            for (int b = 0; b < arr[a].length; b++){
+                sum = arr[a][b] + sum;
+            }
+        }
+        return sum;
     }
 }
+
+
