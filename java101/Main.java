@@ -9,6 +9,7 @@ public class Main {
         System.out.println(PracticeProblems.countOccurrences(new int[]{1, 2, 2, 4, 2, 2, 10},  2));
         System.out.println(PracticeProblems.sumGrid(array));
         PracticeProblems.Reversearr(arty);
+        PracticeProblems.fib(5);
     }
 }
 
