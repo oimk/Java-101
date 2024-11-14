@@ -14,7 +14,9 @@ public class Point {
 	public Point translateY(double t) {
 		return new Point(x, y + t);
 	}
+
     @Override
+
     public String toString(){
         return "(" + x + "," + y + ")";
     }
@@ -29,5 +31,20 @@ public class Point {
 			subtotaly += points[i].y;
 		}
 		return new Point(subtotalx / points.length, subtotaly / points.length);
+	}
+	public static double angle(Point pt){
+		double xVal = pt.x;
+		System.out.println(pt.x);
+		double yVal = pt.y;
+		double angle = Math.toDegrees(Math.atan2(yVal, xVal));
+		if (xVal == 0 && yVal == 0){
+			return 0.0;
+		}
+		if (angle < 0){
+			return angle =+ 360.0;
+		}
+		else{
+			return 0.0;
+		}
 	}
 }
