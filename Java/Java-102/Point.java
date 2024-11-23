@@ -34,17 +34,16 @@ public class Point {
 	}
 	public static double angle(Point pt){
 		double xVal = pt.x;
-		System.out.println(pt.x);
 		double yVal = pt.y;
 		double angle = Math.toDegrees(Math.atan2(yVal, xVal));
-		if (xVal == 0 && yVal == 0){
+		if (angle == 0){
 			return 0.0;
 		}
 		if (angle < 0){
-			return angle =+ 360.0;
+			return angle = angle + 360.0;
 		}
 		else{
-			return 0.0;
+			return angle;
 		}
 	}
 }
