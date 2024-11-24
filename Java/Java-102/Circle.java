@@ -58,37 +58,51 @@ public class Circle implements Shape{
 	public static Circle fromPoints(Point p1, Point p2, Point p3){
 		//Midpoint of AB and BC using midpoint formula
 		Point midpointpAB = new Point((p1.x + p2.x)/2, (p1.y + p2.y)/2);
-		System.out.println("Midpoint AB: " + midpointpAB);
 		Point midpointpBC = new Point((p2.x + p3.x)/2, (p2.y + p3.y)/2);
 		System.out.println("Midpoint BC: " + midpointpBC);
+		System.out.println("Midpoint AB: " + midpointpAB);
 		// Slope of the prependicular lines of AB and BC
-		Double PrependSlopeAB;
-		if (p2.x - p1.x == 0){
-			PrependSlopeAB = 0.0;
-		} 
-		else{
-			PrependSlopeAB = -1 /((p2.y - p1.y)/(p2.x - p1.x));
-		}
-		System.out.println("Slope AB: " +PrependSlopeAB);
-		Double PrependSlopeBC;
-		if (p3.x - p2.x == 0){
-			PrependSlopeBC = 0.0;
-		} 
-		else{
-			PrependSlopeBC = -1 /((p3.y - p2.y)/(p3.x - p2.x));
-		}
+		Double PrependSlopeAB = getPerpenSlope(p1, p2);
+		Double PrependSlopeBC = getPerpenSlope(p2, p3);
+		System.out.println("Slope AB: " + PrependSlopeAB);
 		System.out.println("Slope BC: " + PrependSlopeBC);
-		// Caculate the circumcenter using system of equations
-		Double xpoint = ((PrependSlopeBC * midpointpBC.x) - (PrependSlopeAB * midpointpAB.x) + (midpointpBC.y - midpointpAB.y)) / (PrependSlopeAB - PrependSlopeBC);
-		System.out.println("x center: " +xpoint);
-		Double ypoint = (PrependSlopeAB * (xpoint - midpointpAB.x)) + midpointpAB.y;
-		System.out.println("y center: " +ypoint);
+		// Caculate the circumcenter using system of equations 
+		Double xpoint, ypoint;
+		if (Double.isInfinite(PrependSlopeAB)){
+			xpoint = midpointpAB.x;
+            ypoint = PrependSlopeBC * (xpoint - midpointpBC.x) + midpointpBC.y;
+		}
+		else if (Double.isFinite(PrependSlopeBC)){
+			xpoint = midpointpBC.x;
+            ypoint = PrependSlopeAB * (xpoint - midpointpAB.x) + midpointpAB.y;
+		}
+		else {
+			double demo = (PrependSlopeAB - PrependSlopeBC);
+			if (demo == 0) {
+				// edge case where points of line are parallel
+				System.out.println("Lines are Parallel, no possible interesection, use differnet points or no circle formable");
+				return null;
+			}
+			xpoint = ((PrependSlopeBC * midpointpBC.x) - (PrependSlopeAB * midpointpAB.x) + (midpointpBC.y - midpointpAB.y)) / demo;
+            System.out.println("x center: " + xpoint);
+
+			ypoint = (PrependSlopeAB * (xpoint - midpointpAB.x)) + midpointpAB.y;
+			System.out.println("y center: " + ypoint);
+		}
 		Point centerPoint = new Point(xpoint, ypoint);
 		//Caculate the raidus using Pythagorean theorem
-		Double Subradius = Math.pow((centerPoint.x - midpointpAB.x), 2) + Math.pow((centerPoint.y - midpointpAB.y), 2);
-		System.out.println("subradius: " + Subradius);
-		Double radius = Math.sqrt(Subradius);
+		Double radius =  Math.sqrt(Math.pow(centerPoint.x - midpointpAB.x, 2) + Math.pow(centerPoint.y - midpointpAB.y, 2));
 		return new Circle(centerPoint, radius);
 	}
-	
+	private static Double getPerpenSlope(Point p1, Point p2){
+		if (p2.x - p1.x == 0  ){
+			return  Double.POSITIVE_INFINITY;
+		} 
+		else if (p2.y - p1.y == 0){
+			return 0.0;
+		}
+		else{
+			return  -1 / ((p2.y - p1.y)/(p2.x - p1.x));
+		}
+	}
 }

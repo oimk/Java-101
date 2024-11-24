@@ -70,9 +70,9 @@ public class Main {
         System.out.println(intarr.get(32));
 // Shapes 
         Point center = new Point(0,0);
-        Point C1 = new Point(0,1);
-        Point C2 = new Point(1,0);
-        Point C3 = new Point(-1,0);
+        Point C1 = new Point(0,2);
+        Point C2 = new Point(-2,0);
+        Point C3 = new Point(0,-2);
         Circle unitC = new Circle(center, 1);
         System.out.println("Area of circle:" + unitC.area());
         System.out.println(unitC.translate(-5, 10).scale(3));
