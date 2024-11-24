@@ -16,10 +16,10 @@ public class Main {
         }
         return sum;
     }
-    static Shape[] scaleAll(Shape[] shapes, double k) {
-        Shape[] scaled = new Shape[shapes.length];
-        for (int i = 0; i < shapes.length; i++) {
-            scaled[i] = shapes[i].scale(k);
+    static ArrayList<Shape> scaleAll(Shape[] shapes, double k) {
+        ArrayList<Shape> scaled = new ArrayList<>(shapes.length);
+        for (Shape shape : shapes) {
+            scaled.add(shape.scale(k));
         }
         return scaled;
     }
@@ -70,6 +70,9 @@ public class Main {
         System.out.println(intarr.get(32));
 // Shapes 
         Point center = new Point(0,0);
+        Point C1 = new Point(0,1);
+        Point C2 = new Point(1,0);
+        Point C3 = new Point(-1,0);
         Circle unitC = new Circle(center, 1);
         System.out.println("Area of circle:" + unitC.area());
         System.out.println(unitC.translate(-5, 10).scale(3));
@@ -82,5 +85,6 @@ public class Main {
              new Square(new Point(-321, 0), 0.02)};
         System.out.println(sumArea(shapes));
         System.out.println(scaleAll(shapes, 10));
+        System.out.println(Circle.fromPoints(C1, C2, C3));
     }
 }
