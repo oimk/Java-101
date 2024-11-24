@@ -9,6 +9,13 @@ public class Main {
         }
         return str + arr[arr.length - 1] + "]";
     }
+    static double sumArea(Shape[] shapes) {
+        double sum = 0;
+        for (Shape shape : shapes) {
+            sum += shape.area();
+        }
+        return sum;
+    }
     public static void main(String[] args) {
         Point myPoint = new Point(3, 5);
         Point myPoint2 = new Point(0, 0);
@@ -42,7 +49,7 @@ public class Main {
         arr.set(0, "Goodbye");
         System.out.println(arr);
         condition.add(true);
-        condition.add(arr.get(0) != "Hello");
+        condition.add("Hello".equals(arr.get(0)));
         condition.add(condition.get(0) || condition.get(1));
         System.out.println(condition);
         
@@ -54,5 +61,18 @@ public class Main {
         }
         System.out.println(intarr);
         System.out.println(intarr.get(32));
+// Shapes 
+        Point center = new Point(0,0);
+        Circle unitC = new Circle(center, 1);
+        System.out.println("Area of circle:" + unitC.area());
+        System.out.println(unitC.translate(-5, 10).scale(3));
+        Point corner = new Point(-1,-1);
+        Square BSquare = new Square(corner, 5);
+        System.out.println(BSquare.corners());
+        Shape[] shapes = {new Circle(new Point(1.8, -20), 2),
+             new Square(new Point(100, 2.1), 5.4),
+             new Circle(new Point(4, 9.123), 98.32),
+             new Square(new Point(-321, 0), 0.02)};
+        System.out.println(sumArea(shapes));
     }
 }

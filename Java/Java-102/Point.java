@@ -26,10 +26,10 @@ public class Point {
 	public static Point centerOfMass(Point[] points){
 		double subtotalx = 0;
 		double subtotaly = 0;
-		for (int i = 0; i < points.length; i++) {
-			subtotalx += points[i].x;
-			subtotaly += points[i].y;
-		}
+            for (Point point : points) {
+                subtotalx += point.x;
+                subtotaly += point.y;
+            }
 		return new Point(subtotalx / points.length, subtotaly / points.length);
 	}
 	public static double angle(Point pt){
@@ -40,7 +40,7 @@ public class Point {
 			return 0.0;
 		}
 		if (angle < 0){
-			return angle = angle + 360.0;
+			return angle + 360.0;
 		}
 		else{
 			return angle;

@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 
-public  class Grid<T> {
+public class Grid<T> {
     private final ArrayList<ArrayList<T>> grid;
     public final int sideLength;
     public static int maxSideLength;
 
     public Grid(int sideLength, T defaultVal) {
 		this.sideLength = sideLength;
-		this.grid = new ArrayList<ArrayList<T>>(sideLength);
+		this.grid = new ArrayList<>(sideLength);
         
 		for (int i = 0; i < sideLength; i++) {
 			grid.add(new ArrayList<>(sideLength));
