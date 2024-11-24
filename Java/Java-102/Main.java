@@ -86,5 +86,12 @@ public class Main {
         System.out.println(sumArea(shapes));
         System.out.println(scaleAll(shapes, 10));
         System.out.println(Circle.fromPoints(C1, C2, C3));
+        Righttriangle Tri = new Righttriangle(center, 5, 5);
+        Point C4 = new Point(2,2);
+        Point C5 = new Point(5,5);
+        Point C6 = new Point(6,2);
+        System.out.println(Tri.isInside(C4)); 
+        System.out.println(Tri.isInside(C5));  
+        System.out.println(Tri.isInside(C6));
     }
 }

@@ -16,7 +16,7 @@ public class Square implements Shape{
     public double area() {
 		return Math.pow(sideLength, 2);
 	}
-	
+	@Override
 	public double perimeter() {
 		return sideLength * 4;
 	}
@@ -24,6 +24,7 @@ public class Square implements Shape{
 	/** 
 	* @return Whether point p is inside of the square.
 	*/
+	@Override
 	public boolean isInside(Point p) {
 		double xDist = p.x - corner.x;
 		double yDist = p.y - corner.y;

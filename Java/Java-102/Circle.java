@@ -72,7 +72,7 @@ public class Circle implements Shape{
 			xpoint = midpointpAB.x;
             ypoint = PrependSlopeBC * (xpoint - midpointpBC.x) + midpointpBC.y;
 		}
-		else if (Double.isFinite(PrependSlopeBC)){
+		else if (Double.isInfinite(PrependSlopeBC)){
 			xpoint = midpointpBC.x;
             ypoint = PrependSlopeAB * (xpoint - midpointpAB.x) + midpointpAB.y;
 		}

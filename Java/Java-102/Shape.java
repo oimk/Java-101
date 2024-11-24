@@ -20,4 +20,5 @@ public interface Shape {
 	* @return The shape that results from the translation.
 	*/
 	public Shape translate(double x, double y);
+	
 }
