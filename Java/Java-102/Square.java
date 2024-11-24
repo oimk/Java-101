@@ -53,6 +53,7 @@ public class Square implements Shape{
 	/** 
 	* @return The sqaure that results from scaling the side length and maintaining the bottom left corner
 	*/
+    @Override
 	public Square scale(double k) {
 		return new Square(corner, sideLength * k);
 	}

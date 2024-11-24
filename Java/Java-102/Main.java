@@ -16,6 +16,13 @@ public class Main {
         }
         return sum;
     }
+    static Shape[] scaleAll(Shape[] shapes, double k) {
+        Shape[] scaled = new Shape[shapes.length];
+        for (int i = 0; i < shapes.length; i++) {
+            scaled[i] = shapes[i].scale(k);
+        }
+        return scaled;
+    }
     public static void main(String[] args) {
         Point myPoint = new Point(3, 5);
         Point myPoint2 = new Point(0, 0);
@@ -74,5 +81,6 @@ public class Main {
              new Circle(new Point(4, 9.123), 98.32),
              new Square(new Point(-321, 0), 0.02)};
         System.out.println(sumArea(shapes));
+        System.out.println(scaleAll(shapes, 10));
     }
 }

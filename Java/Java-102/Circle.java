@@ -43,6 +43,7 @@ public class Circle implements Shape{
 	/** 
 	* @return The circle that results from scaling by k.
 	*/
+	@Override
 	public Circle scale(double k) {
 		return new Circle(center, radius * k);
 	}

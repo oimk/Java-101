@@ -1,3 +1,4 @@
 public interface Shape {
-    double area();
+    public double area();
+    public Shape scale(double k);
 }
