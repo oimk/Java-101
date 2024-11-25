@@ -47,6 +47,7 @@ public class Square implements Shape{
 	* @param y How much to translate the squarer by in the + y direction.
 	* @return The sqaure that results from the translation.
 	*/
+	@Override
 	public Square translate(double x, double y) {
 		return new Square(corner.translateX(x).translateY(y), sideLength);
 	}

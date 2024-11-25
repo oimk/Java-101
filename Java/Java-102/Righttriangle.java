@@ -21,16 +21,50 @@ public class Righttriangle implements Shape{
         return 0.5 * base * height;
     }
     @Override
-    public boolean isInside(Point p){
-        if (corner.x < p.x && p.x <  corner.x + base && corner.y < p.y &&  p.y < corner.y + height){
-            System.out.println("TRUE");
-            double hypoY = (height / base) * (p.x - corner.x) + corner.y;
-            return p.y < hypoY;
-    }
-    else {
+    public boolean isInside(Point p) {
+        // Calculate points A and B based on base and height
+        Point A = new Point(corner.x, corner.y + height);
+        Point B = new Point(corner.x + base, corner.y);
+    
+        // Calculate the slope of the hypotenuse
+        double slope = (double)(A.y - B.y) / (A.x - B.x);
+    
+        // Case 1: Triangle upwards, right to left (base > 0, height > 0)
+        if (base > 0 && height > 0) {
+            if (p.x > corner.x && p.x < corner.x + base && p.y > corner.y && p.y < corner.y + height) {
+                double hypoYVal = slope * (p.x - corner.x) + corner.y;
+                return p.y < hypoYVal;
+            }
+        }
+    
+        // Case 2: Triangle upwards, left to right (base > 0, height < 0)
+        else if (base > 0 && height < 0) {
+            if (p.x > corner.x && p.x < corner.x + base && p.y < corner.y && p.y > corner.y + height) {
+                double hypoYVal = slope * (p.x - corner.x) + corner.y;
+                return p.y > hypoYVal;
+            }
+        }
+    
+        // Case 3: Triangle downwards, left to right (base < 0, height < 0)
+        else if (base < 0 && height < 0) {
+            if (p.x < corner.x && p.x > corner.x + base && p.y < corner.y && p.y > corner.y + height) {
+                double hypoYVal = slope * (p.x - corner.x) + corner.y;
+                return p.y > hypoYVal;
+            }
+        }
+    
+        // Case 4: Triangle downwards, right to left (base < 0, height > 0)
+        else if (base < 0 && height > 0) {
+            if (p.x < corner.x && p.x > corner.x + base && p.y < corner.y && p.y > corner.y + height) {
+                double hypoYVal = slope * (p.x - corner.x) + corner.y;
+                return p.y < hypoYVal;
+            }
+        }
+    
+        // If none of the conditions match, return false
         return false;
     }
-    }
+    
     @Override 
     public boolean isOn(Point p){
         double xDist = p.x - corner.x;
@@ -46,5 +80,9 @@ public class Righttriangle implements Shape{
     @Override
     public Shape translate(double x, double y){
         return new Righttriangle(corner.translateX(x).translateY(y), base, height);
+    }
+    @Override 
+    public String toString(){
+        return "(" + "Corner:"+ corner + "; Base: " + base + "; Height: " + height; 
     }
 }
