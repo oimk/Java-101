@@ -91,7 +91,7 @@ public class Circle implements Shape{
 		}
 		Point centerPoint = new Point(xpoint, ypoint);
 		//Caculate the raidus using Pythagorean theorem
-		Double radius =  Math.sqrt(Math.pow(centerPoint.x - midpointpAB.x, 2) + Math.pow(centerPoint.y - midpointpAB.y, 2));
+		Double radius =  Math.sqrt(Math.pow(centerPoint.x -p1.x, 2) + Math.pow(centerPoint.y - p1.y, 2));
 		return new Circle(centerPoint, radius);
 	}
 	private static Double getPerpenSlope(Point p1, Point p2){

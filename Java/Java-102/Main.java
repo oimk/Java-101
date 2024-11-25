@@ -23,6 +23,20 @@ public class Main {
         }
         return scaled;
     }
+    public static void returnAll(LibaryItems[] items) {
+        for (LibaryItems Items: items) {
+            Items.returnItem();
+        }
+    }
+    public static ArrayList<LibaryItems> availableItems(LibaryItems[] items) {
+        ArrayList<LibaryItems> AvilableItm = new ArrayList<>();
+        for (LibaryItems Items : items){
+          if (Items.available()){
+           AvilableItm.add(Items);
+        }  
+    }
+    return AvilableItm; 
+}
     public static void main(String[] args) {
         Point myPoint = new Point(3, 5);
         Point myPoint2 = new Point(0, 0);
@@ -69,10 +83,10 @@ public class Main {
         System.out.println(intarr);
         System.out.println(intarr.get(32));
 // Shapes 
-        Point center = new Point(5,5);
-        Point C1 = new Point(0,2);
-        Point C2 = new Point(-2,0);
-        Point C3 = new Point(0,-2);
+        Point center = new Point(3,2);
+        Point C1 = new Point(-0.32,-2.33);
+        Point C2 = new Point(-2.50,0.42);
+        Point C3 = new Point(-7.20,-6.74);
         Circle unitC = new Circle(center, 1);
         System.out.println("Area of circle:" + unitC.area());
         System.out.println(unitC.translate(-5, 10).scale(3));
@@ -93,5 +107,31 @@ public class Main {
         System.out.println(Tri.isInside(C4)); 
         System.out.println(Tri.isInside(C5));  
         System.out.println(Tri.isInside(C6));
+        // Inheritance 
+        A a = new A(12.3, 430);
+        B b = new B(-12.31, "hello");
+        a.method1();
+        b.method1();
+        b.method2();
+        A bInDisguise = new B(1002.013, "world");
+        bInDisguise.method2();
+        // Libary 
+        LibaryItems[] items = new LibaryItems[10];
+
+        // Adding LibraryItems objects to the array
+        items[0] = new book("1984", "B001", "George Orwell", 328);
+        items[1] = new book("Pride and Prejudice", "B002", "Jane Austen", 279);
+        items[2] = new book("The Catcher in the Rye", "B003", "J.D. Salinger", 277);
+        items[3] = new book("Moby Dick", "B004", "Herman Melville", 635);
+        items[4] = new book("The Great Gatsby", "B005", "F. Scott Fitzgerald", 180);
+        items[5] = new book("War and Peace", "B006", "Leo Tolstoy", 1225);
+        items[6] = new book("To Kill a Mockingbird", "B007", "Harper Lee", 281);
+        items[7] = new book("The Odyssey", "B008", "Homer", 500);
+        items[8] = new book("The Lord of the Rings", "B009", "J.R.R. Tolkien", 1216);
+        items[9] = new book("Catch-22", "B010", "Joseph Heller", 453);
+        items[0].checkOut(); 
+        items[2].checkOut();  
+        items[4].checkOut();
+        System.out.println(availableItems(items));
     }
 }
